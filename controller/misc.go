@@ -58,6 +58,16 @@ func WeChatVerification(c *gin.Context) {
 	}
 }
 
+func GetAccessToken(c *gin.Context) {
+	accessToken, expiration := common.GetAccessToken()
+	c.JSON(http.StatusOK, gin.H{
+		"success":      true,
+		"message":      "",
+		"access_token": accessToken,
+		"expiration":   expiration,
+	})
+}
+
 func SendEmailVerification(c *gin.Context) {
 	email := c.Query("email")
 	if err := common.Validate.Var(email, "required,email"); err != nil {

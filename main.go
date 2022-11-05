@@ -48,6 +48,9 @@ func main() {
 	// Initialize options
 	model.InitOptionMap()
 
+	// Initialize access token store
+	common.InitAccessTokenStore()
+
 	// Initialize HTTP server
 	server := gin.Default()
 	server.Use(middleware.CORS())

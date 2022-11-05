@@ -117,7 +117,7 @@ func UnescapeHTML(x string) interface{} {
 	return template.HTML(x)
 }
 
-func IntMax(a int, b int) int {
+func Max(a int, b int) int {
 	if a >= b {
 		return a
 	} else {
