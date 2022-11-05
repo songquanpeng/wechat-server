@@ -36,9 +36,14 @@ func GenerateVerificationCode(length int) string {
 }
 
 func GenerateAllNumberVerificationCode(length int) string {
-	min := math.Pow10(length)
-	max := math.Pow10(length+1) - 1
-	return strconv.Itoa(rand.Intn(int(max-min)) + int(min))
+	min := math.Pow10(length - 1)
+	max := math.Pow10(length) - 1
+	code := strconv.Itoa(rand.Intn(int(max-min)) + int(min))
+	if GetWeChatIDByCode(code) != "" {
+		SysError("repeated verification code detected")
+		return GenerateAllNumberVerificationCode(length + 1)
+	}
+	return code
 }
 
 func RegisterWeChatCodeAndID(code string, id string) {
