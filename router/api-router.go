@@ -17,7 +17,7 @@ func SetApiRouter(router *gin.Engine) {
 		apiRouter.GET("/reset_password", middleware.CriticalRateLimit(), controller.SendPasswordResetEmail)
 		apiRouter.GET("/user/reset", controller.SendNewPasswordEmail)
 		apiRouter.GET("/oauth/github", controller.GitHubOAuth)
-		apiRouter.GET("/access_token", middleware.AdminAuth(), controller.GetAccessToken)
+		apiRouter.GET("/access_token", middleware.AdminAuth(), middleware.TokenOnlyAuth(), controller.GetAccessToken)
 
 		userRoute := apiRouter.Group("/user")
 		{

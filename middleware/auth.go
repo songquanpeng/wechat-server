@@ -99,3 +99,19 @@ func NoTokenAuth() func(c *gin.Context) {
 		c.Next()
 	}
 }
+
+// TokenOnlyAuth You should always use this after normal auth middlewares.
+func TokenOnlyAuth() func(c *gin.Context) {
+	return func(c *gin.Context) {
+		authByToken := c.GetBool("authByToken")
+		if !authByToken {
+			c.JSON(http.StatusOK, gin.H{
+				"success": false,
+				"message": "本接口仅支持使用 token 进行验证",
+			})
+			c.Abort()
+			return
+		}
+		c.Next()
+	}
+}
