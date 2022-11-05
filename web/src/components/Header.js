@@ -24,11 +24,6 @@ const headerButtons = [
     to: '/setting',
     icon: 'setting',
   },
-  {
-    name: '关于',
-    to: '/about',
-    icon: 'info circle',
-  },
 ];
 
 const Header = () => {

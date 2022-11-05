@@ -38,7 +38,7 @@ function App() {
         path="/"
         element={
           <Suspense fallback={<Loading></Loading>}>
-            <Home />
+            <About />
           </Suspense>
         }
       />
