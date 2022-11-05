@@ -43,6 +43,7 @@ func InitOptionMap() {
 	common.OptionMap["WeChatAppSecret"] = ""
 	common.OptionMap["WeChatEncodingAESKey"] = ""
 	common.OptionMap["WeChatOwnerID"] = ""
+	common.OptionMap["WeChatMenu"] = common.WeChatMenu
 	common.OptionMapRWMutex.Unlock()
 	options, _ := AllOption()
 	for _, option := range options {
@@ -121,5 +122,7 @@ func updateOptionMap(key string, value string) {
 		common.WeChatEncodingAESKey = value
 	case "WeChatOwnerID":
 		common.WeChatOwnerID = value
+	case "WeChatMenu":
+		common.WeChatMenu = value
 	}
 }

@@ -19,6 +19,15 @@ var WeChatAppID = ""
 var WeChatAppSecret = ""
 var WeChatEncodingAESKey = ""
 var WeChatOwnerID = ""
+var WeChatMenu = `{
+  "button": [
+    {
+      "type": "click",
+      "name": "登录验证",
+      "key": "USER_VERIFICATION"
+    }
+  ]
+}`
 
 var SessionSecret = uuid.New().String()
 var SQLitePath = ".wechat-server.db"

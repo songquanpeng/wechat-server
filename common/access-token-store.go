@@ -48,6 +48,7 @@ func RefreshAccessToken() {
 		SysError("failed to refresh access token: " + err.Error())
 		return
 	}
+	defer responseData.Body.Close()
 	var res response
 	err = json.NewDecoder(responseData.Body).Decode(&res)
 	if err != nil {
@@ -61,8 +62,14 @@ func RefreshAccessToken() {
 	SysLog("access token refreshed")
 }
 
-func GetAccessToken() (string, int) {
+func GetAccessTokenAndExpirationSeconds() (string, int) {
 	s.Mutex.RLock()
 	defer s.Mutex.RUnlock()
 	return s.AccessToken, s.ExpirationSeconds
+}
+
+func GetAccessToken() string {
+	s.Mutex.RLock()
+	defer s.Mutex.RUnlock()
+	return s.AccessToken
 }

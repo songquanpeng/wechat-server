@@ -1,7 +1,9 @@
 package controller
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
@@ -54,6 +56,33 @@ func UpdateOption(c *gin.Context) {
 			"message": err.Error(),
 		})
 		return
+	}
+	if option.Key == "WeChatMenu" {
+		httpResponse, err := http.Post(fmt.Sprintf("https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s", common.GetAccessToken()), "application/json", bytes.NewBuffer([]byte(option.Value)))
+		if err != nil {
+			c.JSON(http.StatusOK, gin.H{
+				"success": false,
+				"message": err.Error(),
+			})
+			return
+		}
+		defer httpResponse.Body.Close()
+		var res wechatResponse
+		err = json.NewDecoder(httpResponse.Body).Decode(&res)
+		if err != nil {
+			c.JSON(http.StatusOK, gin.H{
+				"success": false,
+				"message": err.Error(),
+			})
+			return
+		}
+		if res.ErrCode != 0 {
+			c.JSON(http.StatusOK, gin.H{
+				"success": false,
+				"message": res.ErrMsg,
+			})
+			return
+		}
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,

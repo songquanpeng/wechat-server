@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Grid } from 'semantic-ui-react';
 import { API, showError } from '../helpers';
+import { Link } from 'react-router-dom';
 
 const WeChatSetting = () => {
   let [inputs, setInputs] = useState({
@@ -9,6 +10,7 @@ const WeChatSetting = () => {
     WeChatAppSecret: '',
     WeChatEncodingAESKey: '',
     WeChatOwnerID: '',
+    WeChatMenu: '',
   });
   let [loading, setLoading] = useState(false);
 
@@ -48,7 +50,15 @@ const WeChatSetting = () => {
   };
 
   const handleInputChange = async (e, { name, value }) => {
-    await updateOption(name, value);
+    if (name === 'WeChatMenu') {
+      setInputs((inputs) => ({ ...inputs, [name]: value }));
+    } else {
+      await updateOption(name, value);
+    }
+  };
+
+  const submitWeChatMenu = async () => {
+    await updateOption('WeChatMenu', inputs.WeChatMenu);
   };
 
   return (
@@ -100,6 +110,28 @@ const WeChatSetting = () => {
               onChange={handleInputChange}
             />
           </Form.Group>
+          <Form.Group widths="equal">
+            <Form.TextArea
+              label={
+                <p>
+                  公众号菜单（
+                  <a
+                    target="_blank"
+                    href="https://developers.weixin.qq.com/doc/offiaccount/Custom_Menus/Creating_Custom-Defined_Menu.html"
+                  >
+                    格式请参考此处
+                  </a>
+                  ）
+                </p>
+              }
+              placeholder="JSON 格式"
+              value={inputs.WeChatMenu}
+              name="WeChatMenu"
+              onChange={handleInputChange}
+              style={{ minHeight: 150, fontFamily: 'JetBrains Mono, Consolas' }}
+            />
+          </Form.Group>
+          <Form.Button onClick={submitWeChatMenu}>更新公众号菜单</Form.Button>
         </Form>
       </Grid.Column>
     </Grid>
