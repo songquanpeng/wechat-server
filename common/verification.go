@@ -54,6 +54,9 @@ func GetWeChatIDByCode(code string) string {
 	verificationMutex.Lock()
 	defer verificationMutex.Unlock()
 	value, okay := verificationMap[WeChatVerificationPurpose+code]
+	if okay {
+		delete(verificationMap, WeChatVerificationPurpose+code)
+	}
 	now := time.Now()
 	if !okay || int(now.Sub(value.time).Seconds()) >= VerificationValidMinutes*60 {
 		return ""
@@ -78,6 +81,9 @@ func VerifyCodeWithKey(key string, code string, purpose string) bool {
 	defer verificationMutex.Unlock()
 	value, okay := verificationMap[purpose+key]
 	now := time.Now()
+	if okay {
+		delete(verificationMap, purpose+key)
+	}
 	if !okay || int(now.Sub(value.time).Seconds()) >= VerificationValidMinutes*60 {
 		return false
 	}
