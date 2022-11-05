@@ -3,10 +3,12 @@ package controller
 import (
 	"crypto/sha1"
 	"encoding/hex"
+	"encoding/xml"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"sort"
 	"strings"
+	"time"
 	"wechat-server/common"
 )
 
@@ -31,6 +33,47 @@ func WeChatVerification(c *gin.Context) {
 	} else {
 		c.Status(http.StatusForbidden)
 	}
+}
+
+func ProcessWeChatMessage(c *gin.Context) {
+	var req common.WeChatMessageRequest
+	err := xml.NewDecoder(c.Request.Body).Decode(&req)
+	if err != nil {
+		common.SysError(err.Error())
+		c.Abort()
+		return
+	}
+	res := common.WeChatMessageResponse{
+		ToUserName:   req.FromUserName,
+		FromUserName: req.ToUserName,
+		CreateTime:   time.Now().Unix(),
+		MsgType:      "text",
+		Content:      "",
+	}
+	common.ProcessWeChatMessage(&req, &res)
+	if res.Content == "" {
+		c.String(http.StatusOK, "")
+		return
+	}
+	c.XML(http.StatusOK, &res)
+}
+
+func GetUserIDByCode(c *gin.Context) {
+	code := c.Query("code")
+	if code == "" {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "无效的参数",
+			"success": false,
+		})
+		return
+	}
+	id := common.GetWeChatIDByCode(code)
+	c.JSON(http.StatusOK, gin.H{
+		"message": "",
+		"success": true,
+		"data":    id,
+	})
+	return
 }
 
 func GetAccessToken(c *gin.Context) {

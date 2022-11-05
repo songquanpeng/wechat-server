@@ -12,12 +12,12 @@ func SetApiRouter(router *gin.Engine) {
 	{
 		apiRouter.GET("/status", controller.GetStatus)
 		apiRouter.GET("/notice", controller.GetNotice)
-		apiRouter.GET("/wechat_verification", controller.WeChatVerification)
+		apiRouter.GET("/wechat", controller.WeChatVerification)
+		apiRouter.POST("/wechat", controller.ProcessWeChatMessage)
 		apiRouter.GET("/verification", middleware.CriticalRateLimit(), controller.SendEmailVerification)
 		apiRouter.GET("/reset_password", middleware.CriticalRateLimit(), controller.SendPasswordResetEmail)
 		apiRouter.GET("/user/reset", controller.SendNewPasswordEmail)
 		apiRouter.GET("/oauth/github", controller.GitHubOAuth)
-		apiRouter.GET("/access_token", middleware.AdminAuth(), middleware.TokenOnlyAuth(), controller.GetAccessToken)
 
 		userRoute := apiRouter.Group("/user")
 		{
@@ -56,6 +56,12 @@ func SetApiRouter(router *gin.Engine) {
 			fileRoute.GET("/:id", middleware.DownloadRateLimit(), controller.DownloadFile)
 			fileRoute.POST("/", middleware.UserAuth(), middleware.UploadRateLimit(), controller.UploadFile)
 			fileRoute.DELETE("/:id", middleware.UserAuth(), controller.DeleteFile)
+		}
+		wechatRoute := apiRouter.Group("/wechat")
+		wechatRoute.Use(middleware.AdminAuth(), middleware.TokenOnlyAuth())
+		{
+			wechatRoute.GET("/access_token", controller.GetAccessToken)
+			wechatRoute.GET("/user", controller.GetUserIDByCode)
 		}
 	}
 }

@@ -2,6 +2,9 @@ package common
 
 import (
 	"github.com/google/uuid"
+	"math"
+	"math/rand"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -13,14 +16,15 @@ type verificationValue struct {
 }
 
 const (
-	EmailVerificationPurpose = "v"
-	PasswordResetPurpose     = "r"
+	EmailVerificationPurpose  = "v"
+	PasswordResetPurpose      = "r"
+	WeChatVerificationPurpose = "w"
 )
 
 var verificationMutex sync.Mutex
 var verificationMap map[string]verificationValue
-var verificationMapMaxSize = 10
-var VerificationValidMinutes = 10
+var verificationMapMaxSize = 20
+var VerificationValidMinutes = 3
 
 func GenerateVerificationCode(length int) string {
 	code := uuid.New().String()
@@ -29,6 +33,27 @@ func GenerateVerificationCode(length int) string {
 		return code
 	}
 	return code[:length]
+}
+
+func GenerateAllNumberVerificationCode(length int) string {
+	min := math.Pow10(length)
+	max := math.Pow10(length+1) - 1
+	return strconv.Itoa(rand.Intn(int(max-min)) + int(min))
+}
+
+func RegisterWeChatCodeAndID(code string, id string) {
+	RegisterVerificationCodeWithKey(code, id, WeChatVerificationPurpose)
+}
+
+func GetWeChatIDByCode(code string) string {
+	verificationMutex.Lock()
+	defer verificationMutex.Unlock()
+	value, okay := verificationMap[WeChatVerificationPurpose+code]
+	now := time.Now()
+	if !okay || int(now.Sub(value.time).Seconds()) >= VerificationValidMinutes*60 {
+		return ""
+	}
+	return value.code
 }
 
 func RegisterVerificationCodeWithKey(key string, code string, purpose string) {

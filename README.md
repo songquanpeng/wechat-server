@@ -3,8 +3,8 @@
 
 ## 功能
 + [x] Access Token 自动刷新 & 提供外部访问接口
-+ [ ] 自定义菜单
-+ [ ] 登录验证
++ [x] 自定义菜单
++ [x] 登录验证
 + [ ] 自定义回复
 
 ## 配置
@@ -22,7 +22,7 @@
 4. 初始账户用户名为 `root`，密码为 `123456`，记得登录后立刻修改密码。
 5. 前往[微信公众号配置页面 -> 设置与开发 -> 基本配置](https://mp.weixin.qq.com/)获取 AppID 和 AppSecret，并在我们的配置页面填入上述信息，另外还需要配置 IP 白名单，按照页面上的提示完成即可。
 6. 前往[微信公众号配置页面 -> 设置与开发 -> 基本配置](https://mp.weixin.qq.com/)填写以下配置：
-   1. `URL` 填：`https://<your.domain>/api/wechat_verification`
+   1. `URL` 填：`https://<your.domain>/api/wechat`
    2. `Token` 首先在我们的配置页面随便填写一个 Token，然后在微信公众号的配置页面填入同一个 Token 即可。
    3. `EncodingAESKey` 点随机生成，然后在我们的配置页面填入该值。
    4. 消息加解密方式选择明文模式。
@@ -31,5 +31,13 @@
 ## API
 ### 获取 Access Token
 1. 请求方法：`GET`
-2. URL：`/api/access_token`
-3. 无参数，但是需要设置 HTTP 头部：`Authorization: your token`
+2. URL：`/api/wechat/access_token`
+3. 无参数，但是需要设置 HTTP 头部：`Authorization: <token>`
+
+### 通过验证码查询用户 ID
+1. 请求方法：`GET`
+2. URL：`/api/wechat/user?code=<code>`
+3. 需要设置 HTTP 头部：`Authorization: <token>`
+
+### 注意
+需要将 `<token>` 和 `<code>` 替换为实际的内容。
