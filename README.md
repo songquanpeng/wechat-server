@@ -7,6 +7,10 @@
 + [x] 登录验证
 + [ ] 自定义回复
 
+## 展示
+![demo1](https://user-images.githubusercontent.com/39998050/200124147-3338a2eb-8193-4068-ae6f-276cfe16a708.png)
+![demo2](https://user-images.githubusercontent.com/39998050/200124177-78636b4c-0aac-4860-a138-68f3d92477b9.png)
+
 ## 配置
 1. 从 [GitHub Releases](https://github.com/songquanpeng/wechat-server/releases/latest) 下载可执行文件。
 2. 系统本身开箱即用，有一些环境变量可供配置：
