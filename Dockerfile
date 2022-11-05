@@ -15,11 +15,11 @@ WORKDIR /build
 COPY . .
 COPY --from=builder /build/build ./web/build
 RUN go mod download
-RUN go build -ldflags "-s -w" -o gin-template
+RUN go build -ldflags "-s -w" -o wechat-server
 
 FROM scratch
 
 ENV PORT=3000
-COPY --from=builder2 /build/gin-template /
+COPY --from=builder2 /build/wechat-server /
 EXPOSE 3000
-ENTRYPOINT ["/gin-template"]
+ENTRYPOINT ["/wechat-server"]

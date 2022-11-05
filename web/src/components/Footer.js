@@ -16,10 +16,10 @@ const Footer = () => {
         {footerHTML === '' ? (
           <div className="custom-footer">
             <a
-              href="https://github.com/songquanpeng/gin-template"
+              href="https://github.com/songquanpeng/wechat-server"
               target="_blank"
             >
-              项目模板 {process.env.REACT_APP_VERSION}{' '}
+              微信服务器 {process.env.REACT_APP_VERSION}{' '}
             </a>
             由{' '}
             <a href="https://github.com/songquanpeng" target="_blank">

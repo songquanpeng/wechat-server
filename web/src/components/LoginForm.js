@@ -66,7 +66,7 @@ const LoginForm = () => {
   return (
     <Grid textAlign="center" style={{ marginTop: '48px' }}>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="teal" textAlign="center">
+        <Header as="h2" textAlign="center">
           <Image src="/logo.png" /> 用户登录
         </Header>
         <Form size="large">
@@ -90,7 +90,7 @@ const LoginForm = () => {
               value={password}
               onChange={handleChange}
             />
-            <Button color="teal" fluid size="large" onClick={handleSubmit}>
+            <Button fluid size="large" onClick={handleSubmit}>
               登录
             </Button>
           </Segment>

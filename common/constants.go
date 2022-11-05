@@ -8,12 +8,12 @@ import (
 
 var StartTime = time.Now().Unix() // unit: second
 var Version = "v0.0.0"
-var SystemName = "项目模板"
+var SystemName = "微信服务器"
 var ServerAddress = "http://localhost:3000"
 var FooterHTML = ""
 
 var SessionSecret = uuid.New().String()
-var SQLitePath = ".gin-template.db"
+var SQLitePath = ".wechat-server.db"
 
 var OptionMap map[string]string
 var OptionMapRWMutex sync.RWMutex
@@ -21,7 +21,7 @@ var OptionMapRWMutex sync.RWMutex
 var ItemsPerPage = 10
 
 var PasswordLoginEnabled = true
-var RegisterEnabled = true
+var RegisterEnabled = false
 var EmailVerificationEnabled = false
 var GitHubOAuthEnabled = false
 

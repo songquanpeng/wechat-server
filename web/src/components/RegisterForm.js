@@ -70,7 +70,7 @@ const RegisterForm = () => {
   return (
     <Grid textAlign="center" style={{ marginTop: '48px' }}>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="teal" textAlign="center">
+        <Header as="h2"  textAlign="center">
           <Image src="/logo.png" /> 新用户注册
         </Header>
         <Form size="large">
@@ -127,7 +127,7 @@ const RegisterForm = () => {
             ) : (
               <></>
             )}
-            <Button color="teal" fluid size="large" onClick={handleSubmit}>
+            <Button  fluid size="large" onClick={handleSubmit}>
               注册
             </Button>
           </Segment>

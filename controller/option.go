@@ -2,10 +2,10 @@ package controller
 
 import (
 	"encoding/json"
-	"gin-template/common"
-	"gin-template/model"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"wechat-server/common"
+	"wechat-server/model"
 )
 
 func GetOptions(c *gin.Context) {

@@ -2,8 +2,8 @@ package model
 
 import (
 	"errors"
-	"gin-template/common"
 	"strings"
+	"wechat-server/common"
 )
 
 type User struct {

@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"gin-template/common"
-	"gin-template/model"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
+	"wechat-server/common"
+	"wechat-server/model"
 )
 
 type GitHubOAuthResponse struct {

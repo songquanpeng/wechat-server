@@ -25,12 +25,12 @@ const Setting = () => {
 
   const openGitHubRelease = () => {
     window.location =
-      'https://github.com/songquanpeng/gin-template/releases/latest';
+      'https://github.com/songquanpeng/wechat-server/releases/latest';
   };
 
   const checkUpdate = async () => {
     const res = await API.get(
-      'https://api.github.com/repos/songquanpeng/gin-template/releases/latest'
+      'https://api.github.com/repos/songquanpeng/wechat-server/releases/latest'
     );
     const { tag_name, body } = res.data;
     if (tag_name === process.env.REACT_APP_VERSION) {

@@ -2,10 +2,6 @@ package main
 
 import (
 	"embed"
-	"gin-template/common"
-	"gin-template/middleware"
-	"gin-template/model"
-	"gin-template/router"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-contrib/sessions/redis"
@@ -13,6 +9,10 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"wechat-server/common"
+	"wechat-server/middleware"
+	"wechat-server/model"
+	"wechat-server/router"
 )
 
 //go:embed web/build

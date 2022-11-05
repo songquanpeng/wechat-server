@@ -3,14 +3,14 @@ package controller
 import (
 	"encoding/json"
 	"fmt"
-	"gin-template/common"
-	"gin-template/model"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
+	"wechat-server/common"
+	"wechat-server/model"
 )
 
 type FileDeleteRequest struct {

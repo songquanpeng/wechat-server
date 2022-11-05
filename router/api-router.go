@@ -1,9 +1,9 @@
 package router
 
 import (
-	"gin-template/controller"
-	"gin-template/middleware"
 	"github.com/gin-gonic/gin"
+	"wechat-server/controller"
+	"wechat-server/middleware"
 )
 
 func SetApiRouter(router *gin.Engine) {

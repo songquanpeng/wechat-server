@@ -1,12 +1,12 @@
 package model
 
 import (
-	"gin-template/common"
 	_ "gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"os"
 	"path"
 	"strings"
+	"wechat-server/common"
 )
 
 type File struct {

@@ -2,9 +2,9 @@ package model
 
 import (
 	"errors"
-	"gin-template/common"
 	"strconv"
 	"strings"
+	"wechat-server/common"
 )
 
 type Option struct {

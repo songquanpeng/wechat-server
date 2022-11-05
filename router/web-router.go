@@ -2,11 +2,11 @@ package router
 
 import (
 	"embed"
-	"gin-template/common"
-	"gin-template/middleware"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"wechat-server/common"
+	"wechat-server/middleware"
 )
 
 func setWebRouter(router *gin.Engine, buildFS embed.FS, indexPage []byte) {
