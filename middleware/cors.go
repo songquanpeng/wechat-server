@@ -15,6 +15,6 @@ func CORS() gin.HandlerFunc {
 	config.MaxAge = 12 * time.Hour
 	// if you want to allow all origins, comment the following two lines
 	config.AllowAllOrigins = false
-	//config.AllowedOrigins = []string{"https://wechat-server.vercel.app"}
+	config.AllowedOrigins = []string{"https://wechat-server.vercel.app"}
 	return cors.New(config)
 }

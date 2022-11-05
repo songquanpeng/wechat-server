@@ -12,6 +12,14 @@ var SystemName = "微信服务器"
 var ServerAddress = "http://localhost:3000"
 var FooterHTML = ""
 
+// Any options with "Secret", "Token", "Key" in its key won't be return by GetOptions
+
+var WeChatToken = ""
+var WeChatAppID = ""
+var WeChatAppSecret = ""
+var WeChatEncodingAESKey = ""
+var WeChatOwnerID = ""
+
 var SessionSecret = uuid.New().String()
 var SQLitePath = ".wechat-server.db"
 

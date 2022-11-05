@@ -8,11 +8,17 @@
 + [ ] Access Token 中控服务器
 
 ## 用法
-1. 从 [GitHub Releases](https://github.com/songquanpeng/wechat-server/releases/latest) 下载可执行文件.
+1. 从 [GitHub Releases](https://github.com/songquanpeng/wechat-server/releases/latest) 下载可执行文件。
 2. 运行: 
    1. `chmod u+x wechat-server`
    2. `./wechat-server --port 3000`
-3. 初始账户用户名为 `root`，密码为 `123456`。
+3. 初始账户用户名为 `root`，密码为 `123456`，记得登录后立刻修改密码。
+4. 前往[微信公众号配置页面 -> 设置与开发 -> 基本配置](https://mp.weixin.qq.com/)获取 AppID 和 AppSecret，并在我们的配置页面填入上述信息，另外还需要配置 IP 白名单，按照页面上的提示完成即可。
+5. 前往[微信公众号配置页面 -> 设置与开发 -> 基本配置](https://mp.weixin.qq.com/)填写以下配置：
+   1. `URL` 填：`https://<your.domain>/api/wechat_verification`
+   2. `Token` 首先在我们的配置页面随便填写一个 Token，然后在微信公众号的配置页面填入同一个 Token 即可。
+   3. `EncodingAESKey` 点随机生成，然后在我们的配置页面填入该值。
+   4. 消息加解密方式选择明文模式。
 
 ## 配置
 系统本身开箱即用。

@@ -38,6 +38,11 @@ func InitOptionMap() {
 	common.OptionMap["ServerAddress"] = ""
 	common.OptionMap["GitHubClientId"] = ""
 	common.OptionMap["GitHubClientSecret"] = ""
+	common.OptionMap["WeChatToken"] = ""
+	common.OptionMap["WeChatAppID"] = ""
+	common.OptionMap["WeChatAppSecret"] = ""
+	common.OptionMap["WeChatEncodingAESKey"] = ""
+	common.OptionMap["WeChatOwnerID"] = ""
 	common.OptionMapRWMutex.Unlock()
 	options, _ := AllOption()
 	for _, option := range options {
@@ -106,5 +111,15 @@ func updateOptionMap(key string, value string) {
 		common.GitHubClientSecret = value
 	case "FooterHTML":
 		common.FooterHTML = value
+	case "WeChatToken":
+		common.WeChatToken = value
+	case "WeChatAppID":
+		common.WeChatAppID = value
+	case "WeChatAppSecret":
+		common.WeChatAppSecret = value
+	case "WeChatEncodingAESKey":
+		common.WeChatEncodingAESKey = value
+	case "WeChatOwnerID":
+		common.WeChatOwnerID = value
 	}
 }

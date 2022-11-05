@@ -4,6 +4,7 @@ import SystemSetting from '../../components/SystemSetting';
 import { Link } from 'react-router-dom';
 import { API, copy, isRoot, showError, showSuccess } from '../../helpers';
 import { marked } from 'marked';
+import WeChatSetting from '../../components/WeChatSetting';
 
 const Setting = () => {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -64,6 +65,14 @@ const Setting = () => {
       render: () => (
         <Tab.Pane attached={false}>
           <SystemSetting />
+        </Tab.Pane>
+      ),
+    });
+    panes.push({
+      menuItem: '微信设置',
+      render: () => (
+        <Tab.Pane attached={false}>
+          <WeChatSetting />
         </Tab.Pane>
       ),
     });
