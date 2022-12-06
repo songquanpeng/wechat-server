@@ -11,6 +11,28 @@
 ![demo1](https://user-images.githubusercontent.com/39998050/200124147-3338a2eb-8193-4068-ae6f-276cfe16a708.png)
 ![demo2](https://user-images.githubusercontent.com/39998050/200124177-78636b4c-0aac-4860-a138-68f3d92477b9.png)
 
+## 部署
+### 手动部署
+1. 从 [GitHub Releases](https://github.com/songquanpeng/wechat-server/releases/latest) 下载可执行文件或者从源码编译：
+   ```shell
+   git clone https://github.com/songquanpeng/wechat-server.git
+   go mod download
+   go build -ldflags "-s -w" -o wechat-server
+   ````
+2. 运行：
+   ```shell
+   chmod u+x wechat-server
+   ./wechat-server --port 3000 --log-dir ./logs
+   ```
+3. 访问 [http://localhost:3000/](http://localhost:3000/) 并登录。初始账号用户名为 `root`，密码为 `123456`。
+
+更加详细的部署教程[参见此处](https://iamazing.cn/page/how-to-deploy-a-website)。
+
+### 基于 Docker 进行部署
+执行：`docker run -d --restart always -p 3000:3000 -v /home/ubuntu/data/wechat-server:/data justsong/wechat-server`
+
+数据将会保存在宿主机的 `/home/ubuntu/data/wechat-server` 目录。
+
 ## 配置
 1. 从 [GitHub Releases](https://github.com/songquanpeng/wechat-server/releases/latest) 下载可执行文件。
 2. 系统本身开箱即用，有一些环境变量可供配置：

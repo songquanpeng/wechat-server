@@ -30,7 +30,7 @@ var WeChatMenu = `{
 }`
 
 var SessionSecret = uuid.New().String()
-var SQLitePath = ".wechat-server.db"
+var SQLitePath = "wechat-server.db"
 
 var OptionMap map[string]string
 var OptionMapRWMutex sync.RWMutex
